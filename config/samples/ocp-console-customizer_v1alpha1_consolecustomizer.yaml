@@ -10,5 +10,10 @@ metadata:
   name: consolecustomizer-redhat
 spec:
   title: "Red Hat - Hub Cluster"
-  textColor: "#FF0000"
-  backgroundColor: "#FFFFFF"
+  textColor: "#FFFFFF"
+  backgroundColor: "#FF0000"
+  logo:
+    configMapName: console-custom-logo
+    configMapKey: console-custom-logo.png
+
+
