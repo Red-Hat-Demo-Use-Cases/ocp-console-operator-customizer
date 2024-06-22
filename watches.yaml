@@ -4,8 +4,4 @@
   group: ocp-console-customizer.dovid
   kind: ConsoleCustomizer
   role: consolecustomizer
-- version: v1alpha1
-  group: ocp-console-customizer.dovid
-  kind: ConsoleCustomizerSkin
-  role: consolecustomizerskin
 #+kubebuilder:scaffold:watch

@@ -8,7 +8,7 @@ layout:
 plugins:
   manifests.sdk.operatorframework.io/v2: {}
   scorecard.sdk.operatorframework.io/v2: {}
-projectName: ocp-console-operator-customizer
+projectName: ocp-console-customizer
 resources:
 - api:
     crdVersion: v1
@@ -16,12 +16,5 @@ resources:
   domain: dovid
   group: ocp-console-customizer
   kind: ConsoleCustomizer
-  version: v1alpha1
-- api:
-    crdVersion: v1
-    namespaced: true
-  domain: dovid
-  group: ocp-console-customizer
-  kind: ConsoleCustomizerSkin
   version: v1alpha1
 version: "3"

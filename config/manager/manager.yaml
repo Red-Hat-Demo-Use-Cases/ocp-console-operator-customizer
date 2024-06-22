@@ -6,8 +6,8 @@ metadata:
     app.kubernetes.io/name: namespace
     app.kubernetes.io/instance: system
     app.kubernetes.io/component: manager
-    app.kubernetes.io/created-by: ocp-console-operator-customizer
-    app.kubernetes.io/part-of: ocp-console-operator-customizer
+    app.kubernetes.io/created-by: ocp-console-customizer
+    app.kubernetes.io/part-of: ocp-console-customizer
     app.kubernetes.io/managed-by: kustomize
   name: system
 ---
@@ -21,8 +21,8 @@ metadata:
     app.kubernetes.io/name: deployment
     app.kubernetes.io/instance: controller-manager
     app.kubernetes.io/component: manager
-    app.kubernetes.io/created-by: ocp-console-operator-customizer
-    app.kubernetes.io/part-of: ocp-console-operator-customizer
+    app.kubernetes.io/created-by: ocp-console-customizer
+    app.kubernetes.io/part-of: ocp-console-customizer
     app.kubernetes.io/managed-by: kustomize
 spec:
   selector:
@@ -68,7 +68,7 @@ spec:
       containers:
       - args:
         - --leader-elect
-        - --leader-election-id=ocp-console-operator-customizer
+        - --leader-election-id=ocp-console-customizer
         image: controller:latest
         name: manager
         env:

@@ -1,12 +1,12 @@
 # Adds namespace to all resources.
-namespace: ocp-console-operator-customizer-system
+namespace: ocp-console-customizer-system
 
 # Value of this field is prepended to the
 # names of all resources, e.g. a deployment named
 # "wordpress" becomes "alices-wordpress".
 # Note that it should also match with the prefix (text before '-') of the namespace
 # field above.
-namePrefix: ocp-console-operator-customizer-
+namePrefix: ocp-console-customizer-
 
 # Labels to add to all resources and selectors.
 #labels:
