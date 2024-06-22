@@ -28,7 +28,7 @@ BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 # This variable is used to construct full image tags for bundle and catalog images.
 #
 # For example, running 'make bundle-build bundle-push catalog-build catalog-push' will build and push both
-# laby.cc/ocp-console-operator-customizer-bundle:$VERSION and laby.cc/ocp-console-operator-customizer-catalog:$VERSION.
+# dovid/ocp-console-operator-customizer-bundle:$VERSION and dovid/ocp-console-operator-customizer-catalog:$VERSION.
 IMAGE_TAG_BASE ?= quay.io/dovid/ocp-console-operator-customizer
 
 # BUNDLE_IMG defines the image:tag used for the bundle.

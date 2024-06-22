@@ -2,7 +2,7 @@
 # This file is used to track the info used to scaffold your project
 # and allow the plugins properly work.
 # More info: https://book.kubebuilder.io/reference/project-config.html
-domain: laby.cc
+domain: dovid
 layout:
 - ansible.sdk.operatorframework.io/v1
 plugins:
@@ -13,8 +13,15 @@ resources:
 - api:
     crdVersion: v1
     namespaced: true
-  domain: laby.cc
-  group: ocp-console-operator-customizer
+  domain: dovid
+  group: ocp-console-customizer
   kind: ConsoleCustomizer
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  domain: dovid
+  group: ocp-console-customizer
+  kind: ConsoleCustomizerSkin
   version: v1alpha1
 version: "3"

@@ -1,14 +1,14 @@
-apiVersion: ocp-console-operator-customizer.laby.cc/v1alpha1
+apiVersion: ocp-console-customizer.dovid/v1alpha1
 kind: ConsoleCustomizer
 metadata:
   labels:
     app.kubernetes.io/name: consolecustomizer
-    app.kubernetes.io/instance: consolecustomizer-sample
+    app.kubernetes.io/instance: consolecustomizer-redhat
     app.kubernetes.io/part-of: ocp-console-operator-customizer
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/created-by: ocp-console-operator-customizer
-  name: consolecustomizer-sample
+  name: consolecustomizer-redhat
 spec:
-  text: "Red Hat - OCPVirt Demo Cluster Hub"
-  text-color: "#FFFFFF"
-  back-color: "#FF0000"
+  text: "Red Hat - Hub Cluster"
+  textColor: "#FF0000"
+  backgroundColor: "#FFFFFF"

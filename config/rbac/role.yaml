@@ -38,14 +38,31 @@ rules:
       - update
       - watch
   ##
-  ## Rules for ocp-console-operator-customizer.laby.cc/v1alpha1, Kind: ConsoleCustomizer
+  ## Rules for ocp-console-customizer.dovid/v1alpha1, Kind: ConsoleCustomizer
   ##
   - apiGroups:
-      - ocp-console-operator-customizer.laby.cc
+      - ocp-console-customizer.dovid
     resources:
       - consolecustomizers
       - consolecustomizers/status
       - consolecustomizers/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  ##
+  ## Rules for ocp-console-customizer.dovid/v1alpha1, Kind: ConsoleCustomizerSkin
+  ##
+  - apiGroups:
+      - ocp-console-customizer.dovid
+    resources:
+      - consolecustomizerskins
+      - consolecustomizerskins/status
+      - consolecustomizerskins/finalizers
     verbs:
       - create
       - delete

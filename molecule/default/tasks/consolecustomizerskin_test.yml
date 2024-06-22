@@ -1,5 +1,5 @@
 ---
-- name: Create the ocp-console-customizer.dovid/v1alpha1.ConsoleCustomizer
+- name: Create the ocp-console-customizer.dovid/v1alpha1.ConsoleCustomizerSkin
   k8s:
     state: present
     namespace: '{{ namespace }}'
@@ -10,7 +10,7 @@
       type: Successful
       status: "True"
   vars:
-    cr_file: 'ocp-console-customizer_v1alpha1_consolecustomizer.yaml'
+    cr_file: 'ocp-console-customizer_v1alpha1_consolecustomizerskin.yaml'
 
 - name: Add assertions here
   assert:

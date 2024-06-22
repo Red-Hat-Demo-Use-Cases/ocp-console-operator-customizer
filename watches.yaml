@@ -1,7 +1,11 @@
 ---
 # Use the 'create api' subcommand to add watches to this file.
 - version: v1alpha1
-  group: ocp-console-operator-customizer.laby.cc
+  group: ocp-console-customizer.dovid
   kind: ConsoleCustomizer
   role: consolecustomizer
+- version: v1alpha1
+  group: ocp-console-customizer.dovid
+  kind: ConsoleCustomizerSkin
+  role: consolecustomizerskin
 #+kubebuilder:scaffold:watch

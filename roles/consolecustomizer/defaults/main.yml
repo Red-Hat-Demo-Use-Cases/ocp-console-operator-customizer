@@ -1,5 +1,7 @@
 ---
 # defaults file for ConsoleCustomizer
-text: "Untiltled"
-text-color: "#FF0000"
-back-color: "#FFFFFF"
+
+
+text: "Red Hat - Hub Cluster"
+text_color: "#FF0000"
+background_color: "#FFFFFF"
