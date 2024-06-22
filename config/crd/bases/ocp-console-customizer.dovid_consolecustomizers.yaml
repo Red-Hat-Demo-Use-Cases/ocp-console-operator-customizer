@@ -10,7 +10,9 @@ spec:
     listKind: ConsoleCustomizerList
     plural: consolecustomizers
     singular: consolecustomizer
-  scope: Namespaced
+    shortNames: 
+      - occ
+  scope: Cluster
   versions:
   - name: v1alpha1
     schema:
@@ -32,12 +34,33 @@ spec:
           spec:
             description: Spec defines the desired state of ConsoleCustomizer
             type: object
-            x-kubernetes-preserve-unknown-fields: true
+            properties:
+              title:
+                description: Title that will be shown in the notification bar
+                type: string
+              textColor:
+                description: Text color of the notification bar
+                type: string
+                pattern: '^#[A-F a-f 0-9]{6}$'
+              backgroundColor:
+                description: Background color of the notification bar
+                type: string
+                pattern: '^#[A-F a-f 0-9]{6}$'
+              logo:
+                description: Title that will be shown in the notification bar
+                type: string
           status:
             description: Status defines the observed state of ConsoleCustomizer
             type: object
             x-kubernetes-preserve-unknown-fields: true
         type: object
+    additionalPrinterColumns:
+    
+    - name: Title
+      type: string
+      description: Title that will be shown in the notification bar
+      jsonPath: .spec.title
+
     served: true
     storage: true
     subresources:

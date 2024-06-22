@@ -1,11 +1,12 @@
 ---
-- name: start memcached
+- name: create console notification
   kubernetes.core.k8s:
     definition:
       apiVersion: console.openshift.io/v1
       kind: ConsoleNotification
       metadata:
-        name: ocp-console-customizer-banner
+        name: '{{ ansible_operator_meta.name }}-occ-banner'
+        namespace: '{{ ansible_operator_meta.namespace }}'
       spec:
         text: "{{text}}"
         color: "{{text_color}}"
