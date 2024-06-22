@@ -14,7 +14,7 @@
 
 - name: patch the console logo
   kubernetes.core.k8s_json_patch:
-    apiVersion: operator.openshift.io/v1
+    api_version: operator.openshift.io/v1
     kind: Console
     name: cluster
     patch:
