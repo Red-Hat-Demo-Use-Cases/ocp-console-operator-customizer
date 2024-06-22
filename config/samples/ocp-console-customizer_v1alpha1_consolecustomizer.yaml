@@ -9,6 +9,6 @@ metadata:
     app.kubernetes.io/created-by: ocp-console-operator-customizer
   name: consolecustomizer-redhat
 spec:
-  text: "Red Hat - Hub Cluster"
+  title: "Red Hat - Hub Cluster"
   textColor: "#FF0000"
   backgroundColor: "#FFFFFF"
