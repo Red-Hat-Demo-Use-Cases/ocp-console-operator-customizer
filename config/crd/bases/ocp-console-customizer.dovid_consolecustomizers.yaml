@@ -12,7 +12,7 @@ spec:
     singular: consolecustomizer
     shortNames: 
       - occ
-  scope: Cluster
+  scope: Namespaced
   versions:
   - name: v1alpha1
     schema:
@@ -47,8 +47,13 @@ spec:
                 type: string
                 pattern: '^#[A-F a-f 0-9]{6}$'
               logo:
-                description: Title that will be shown in the notification bar
-                type: string
+                description: Config map which represents the logo you want to expose
+                type: object
+                properties:
+                  configMapName:
+                    type: string
+                  configMapKey:
+                    type: string
           status:
             description: Status defines the observed state of ConsoleCustomizer
             type: object

@@ -5,3 +5,5 @@
 text: "Red Hat - Hub Cluster"
 text_color: "#FF0000"
 background_color: "#FFFFFF"
+logo.config_map_name: console-custom-logo
+logo.config_map_key: console-custom-logo.png
