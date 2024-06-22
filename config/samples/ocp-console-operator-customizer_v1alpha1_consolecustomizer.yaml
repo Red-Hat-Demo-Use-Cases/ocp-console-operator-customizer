@@ -1,0 +1,12 @@
+apiVersion: ocp-console-operator-customizer.laby.cc/v1alpha1
+kind: ConsoleCustomizer
+metadata:
+  labels:
+    app.kubernetes.io/name: consolecustomizer
+    app.kubernetes.io/instance: consolecustomizer-sample
+    app.kubernetes.io/part-of: ocp-console-operator-customizer
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: ocp-console-operator-customizer
+  name: consolecustomizer-sample
+spec:
+  # TODO(user): Add fields here

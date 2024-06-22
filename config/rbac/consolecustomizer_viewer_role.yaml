@@ -1,0 +1,27 @@
+# permissions for end users to view consolecustomizers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: consolecustomizer-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: ocp-console-operator-customizer
+    app.kubernetes.io/part-of: ocp-console-operator-customizer
+    app.kubernetes.io/managed-by: kustomize
+  name: consolecustomizer-viewer-role
+rules:
+- apiGroups:
+  - ocp-console-operator-customizer.laby.cc
+  resources:
+  - consolecustomizers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ocp-console-operator-customizer.laby.cc
+  resources:
+  - consolecustomizers/status
+  verbs:
+  - get

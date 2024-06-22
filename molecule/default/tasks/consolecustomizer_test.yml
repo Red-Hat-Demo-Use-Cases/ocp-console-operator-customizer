@@ -1,0 +1,18 @@
+---
+- name: Create the ocp-console-operator-customizer.laby.cc/v1alpha1.ConsoleCustomizer
+  k8s:
+    state: present
+    namespace: '{{ namespace }}'
+    definition: "{{ lookup('template', '/'.join([samples_dir, cr_file])) | from_yaml }}"
+    wait: yes
+    wait_timeout: 300
+    wait_condition:
+      type: Successful
+      status: "True"
+  vars:
+    cr_file: 'ocp-console-operator-customizer_v1alpha1_consolecustomizer.yaml'
+
+- name: Add assertions here
+  assert:
+    that: false
+    fail_msg: FIXME Add real assertions for your operator

@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- ocp-console-operator-customizer_v1alpha1_consolecustomizer.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
