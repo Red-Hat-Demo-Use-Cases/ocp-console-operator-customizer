@@ -1,9 +1,12 @@
 ---
-apiVersion: console.openshift.io/v1
-kind: ConsoleNotification
-metadata:
-  name: ocp-console-customizer-banner
-spec:
-  text: "{{text}}"
-  color: "{{text_color}}"
-  backgroundColor: "{{background_color}}"
+- name: start memcached
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: console.openshift.io/v1
+      kind: ConsoleNotification
+      metadata:
+        name: ocp-console-customizer-banner
+      spec:
+        text: "{{text}}"
+        color: "{{text_color}}"
+        backgroundColor: "{{background_color}}"
