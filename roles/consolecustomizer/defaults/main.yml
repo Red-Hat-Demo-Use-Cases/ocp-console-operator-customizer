@@ -1,2 +1,5 @@
 ---
 # defaults file for ConsoleCustomizer
+text: "Untiltled"
+text-color: "#FF0000"
+back-color: "#FFFFFF"

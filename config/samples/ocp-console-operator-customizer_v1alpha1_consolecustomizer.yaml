@@ -9,4 +9,6 @@ metadata:
     app.kubernetes.io/created-by: ocp-console-operator-customizer
   name: consolecustomizer-sample
 spec:
-  # TODO(user): Add fields here
+  text: "Red Hat - OCPVirt Demo Cluster Hub"
+  text-color: "#FFFFFF"
+  back-color: "#FF0000"

@@ -1,2 +1,13 @@
 ---
-# tasks file for ConsoleCustomizer
+- name: start memcached
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: console.openshift.io/v1
+      kind: ConsoleNotification
+      metadata:
+        name: name: '{{ ansible_operator_meta.name }}-banner'
+      spec:
+        text: "{{text}}"
+        location: BannerTop
+        color: "{{text-color}}"
+        backgroundColor: "{{back-color}}"

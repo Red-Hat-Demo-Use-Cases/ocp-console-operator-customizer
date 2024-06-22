@@ -29,7 +29,7 @@ BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 #
 # For example, running 'make bundle-build bundle-push catalog-build catalog-push' will build and push both
 # laby.cc/ocp-console-operator-customizer-bundle:$VERSION and laby.cc/ocp-console-operator-customizer-catalog:$VERSION.
-IMAGE_TAG_BASE ?= laby.cc/ocp-console-operator-customizer
+IMAGE_TAG_BASE ?= quay.io/dovid/ocp-console-operator-customizer
 
 # BUNDLE_IMG defines the image:tag used for the bundle.
 # You can use it as an arg. (E.g make bundle-build BUNDLE_IMG=<some-registry>/<project-name-bundle>:<tag>)
@@ -82,11 +82,11 @@ run: ansible-operator ## Run against the configured Kubernetes cluster in ~/.kub
 
 .PHONY: docker-build
 docker-build: ## Build docker image with the manager.
-	docker build -t ${IMG} .
+	podman build -t ${IMG} .
 
 .PHONY: docker-push
 docker-push: ## Push docker image with the manager.
-	docker push ${IMG}
+	podman push ${IMG}
 
 # PLATFORMS defines the target platforms for  the manager image be build to provide support to multiple
 # architectures. (i.e. make docker-buildx IMG=myregistry/mypoperator:0.0.1). To use this option you need to:
@@ -97,10 +97,10 @@ docker-push: ## Push docker image with the manager.
 PLATFORMS ?= linux/arm64,linux/amd64,linux/s390x,linux/ppc64le
 .PHONY: docker-buildx
 docker-buildx: ## Build and push docker image for the manager for cross-platform support
-	- docker buildx create --name project-v3-builder
-	docker buildx use project-v3-builder
-	- docker buildx build --push --platform=$(PLATFORMS) --tag ${IMG} -f Dockerfile .
-	- docker buildx rm project-v3-builder
+	- podman buildx create --name project-v3-builder
+	podman buildx use project-v3-builder
+	- podman buildx build --push --platform=$(PLATFORMS) --tag ${IMG} -f Dockerfile .
+	- podman buildx rm project-v3-builder
 
 ##@ Deployment
 
@@ -181,7 +181,7 @@ bundle: kustomize operator-sdk ## Generate bundle manifests and metadata, then v
 
 .PHONY: bundle-build
 bundle-build: ## Build the bundle image.
-	docker build -f bundle.Dockerfile -t $(BUNDLE_IMG) .
+	podman build -f bundle.Dockerfile -t $(BUNDLE_IMG) .
 
 .PHONY: bundle-push
 bundle-push: ## Push the bundle image.
