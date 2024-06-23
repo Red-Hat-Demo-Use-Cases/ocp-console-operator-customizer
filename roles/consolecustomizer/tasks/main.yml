@@ -1,4 +1,16 @@
 ---
+
+- name: Get an existing Service object
+  kubernetes.core.k8s_info:
+    api_version: ocp-console-customizer.dovid/v1alpha1
+    kind: ConsoleCustomizerSkin
+    name: "{{active_skin}}"
+  register: reg_active_skin
+
+- name: debug
+  ansible.builtin.debug:
+    var: reg_active_skin
+
 - name: create console notification
   kubernetes.core.k8s:
     definition:
@@ -8,19 +20,25 @@
         name: '{{ ansible_operator_meta.name }}-occ-banner'
         namespace: '{{ ansible_operator_meta.namespace }}'
       spec:
-        text: "{{title}}"
-        color: "{{text_color}}"
-        backgroundColor: "{{background_color}}"
+        text: "{{reg_active_skin.spec.title}}"
+        color: "{{reg_active_skin.spec.text_color}}"
+        backgroundColor: "{{reg_active_skin.spec.background_color}}"
 
-- name: patch the console logo
-  kubernetes.core.k8s_json_patch:
-    api_version: operator.openshift.io/v1
-    kind: Console
-    name: cluster
-    patch:
-      - op: replace
-        path: /spec/customization/customLogoFile/name
-        value: "{{logo.config_map_name}}"
-      - op: replace
-        path: /spec/customization/customLogoFile/key
-        value: "{{logo.config_map_key}}"
+# - name: patch the console logo
+#   kubernetes.core.k8s_json_patch:
+#     api_version: operator.openshift.io/v1
+#     kind: Console
+#     name: cluster
+#     patch:
+#       - op: add
+#         path: /spec/customization/customLogoFile/name
+#         value: "{{logo.config_map_name}}"
+#       - op: add
+#         path: /spec/customization/customLogoFile/key
+#         value: "{{logo.config_map_key}}"
+#       - op: replace
+#         path: /spec/customization/customLogoFile/name
+#         value: "{{logo.config_map_name}}"
+#       - op: replace
+#         path: /spec/customization/customLogoFile/key
+#         value: "{{logo.config_map_key}}"

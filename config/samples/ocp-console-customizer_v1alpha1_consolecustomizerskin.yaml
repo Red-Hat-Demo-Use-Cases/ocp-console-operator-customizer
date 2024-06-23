@@ -1,0 +1,15 @@
+apiVersion: ocp-console-customizer.dovid/v1alpha1
+kind: ConsoleCustomizerSkin
+metadata:
+  labels:
+    app.kubernetes.io/name: consolecustomizerskin
+    app.kubernetes.io/instance: consolecustomizerskin-sample
+    app.kubernetes.io/part-of: ocp-console-customizer
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: ocp-console-customizer
+  name: consolecustomizerskin-sample
+spec:
+  title: "Red Hat - Hub Cluster"
+  textColor: "#FFFFFF"
+  backgroundColor: "#FF0000"
+  logo: ""

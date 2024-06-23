@@ -17,4 +17,11 @@ resources:
   group: ocp-console-customizer
   kind: ConsoleCustomizer
   version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  domain: dovid
+  group: ocp-console-customizer
+  kind: ConsoleCustomizerSkin
+  version: v1alpha1
 version: "3"
