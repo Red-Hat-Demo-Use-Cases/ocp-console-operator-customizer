@@ -29,8 +29,11 @@
       metadata:
         name: console-custom-logo
       binaryData:
-        ccl-{{active_skin}}: "{{reg_active_skin.resources[0].spec.logo}}"
+        console-custom-logo: "{{reg_active_skin.resources[0].spec.logo}}"
+    append_hash: true
     apply: yes
+    server_side_apply:
+      field_manager: ansible
   # when: reg_active_skin.resources[0].spec.logo != ""
 
 - name: patch the console logo
@@ -44,7 +47,7 @@
         value: "console-custom-logo"
       - op: add
         path: /spec/customization/customLogoFile/key
-        value: "ccl-{{active_skin}}"
+        value: "console-custom-logo"
 
   # when: reg_active_skin.resources[0].spec.logo != ""
 
