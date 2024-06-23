@@ -42,10 +42,10 @@
     kind: Console
     name: cluster
     patch:
-      - op: add
+      - op: replace
         path: /spec/customization/customLogoFile/name
         value: "console-custom-logo"
-      - op: add
+      - op: replace
         path: /spec/customization/customLogoFile/key
         value: "console-custom-logo"
 
