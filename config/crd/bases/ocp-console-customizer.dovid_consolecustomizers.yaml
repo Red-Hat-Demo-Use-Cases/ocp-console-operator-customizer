@@ -12,7 +12,7 @@ spec:
     singular: consolecustomizer
     shortNames: 
       - occ
-  scope: cluster
+  scope: Cluster
   versions:
   - name: v1alpha1
     schema:
