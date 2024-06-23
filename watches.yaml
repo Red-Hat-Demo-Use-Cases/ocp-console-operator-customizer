@@ -4,8 +4,4 @@
   group: ocp-console-customizer.dovid
   kind: ConsoleCustomizer
   role: consolecustomizer
-- version: v1alpha1
-  group: ocp-console-customizer.dovid
-  kind: ConsoleCustomizerSkin
-  # FIXME: Specify the role or playbook for this resource.
 #+kubebuilder:scaffold:watch
