@@ -20,9 +20,9 @@
         name: '{{ ansible_operator_meta.name }}-occ-banner'
         namespace: '{{ ansible_operator_meta.namespace }}'
       spec:
-        text: "{{reg_active_skin.spec.title}}"
-        color: "{{reg_active_skin.spec.text_color}}"
-        backgroundColor: "{{reg_active_skin.spec.background_color}}"
+        text: "{{reg_active_skin.resources[0].spec.title}}"
+        color: "{{reg_active_skin.resources[0].spec.text_color}}"
+        backgroundColor: "{{reg_active_skin.resources[0].spec.background_color}}"
 
 # - name: patch the console logo
 #   kubernetes.core.k8s_json_patch:
