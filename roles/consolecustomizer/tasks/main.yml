@@ -1,17 +1,13 @@
 ---
 
-- name: Get an existing Service object
+- name: Get the active skin from ConsoleCustomizer
   kubernetes.core.k8s_info:
     api_version: ocp-console-customizer.dovid/v1alpha1
     kind: ConsoleCustomizerSkin
     name: "{{active_skin}}"
   register: reg_active_skin
 
-- name: debug
-  ansible.builtin.debug:
-    var: reg_active_skin
-
-- name: create console notification
+- name: Create the console notification
   kubernetes.core.k8s:
     definition:
       apiVersion: console.openshift.io/v1
@@ -35,7 +31,7 @@
       binaryData:
         console-custom-logo: "{{reg_active_skin.resources[0].spec.logo}}"
     apply: yes
-  when: reg_active_skin.resources[0].spec.logo != ""
+  # when: reg_active_skin.resources[0].spec.logo != ""
 
 - name: patch the console logo
   kubernetes.core.k8s_json_patch:
@@ -55,29 +51,29 @@
       - op: replace
         path: /spec/customization/customLogoFile/key
         value: "console-custom-logo"
-  when: reg_active_skin.resources[0].spec.logo != ""
+  # when: reg_active_skin.resources[0].spec.logo != ""
 
-- name: Delete configmap using server side apply
-  kubernetes.core.k8s:
-    state: absent
-    namespace: openshift-config
-    definition:
-      apiVersion: v1
-      kind: ConfigMap
-      metadata:
-        name: console-custom-logo
-  when: reg_active_skin.resources[0].spec.logo == ""
+# - name: Delete configmap using server side apply
+#   kubernetes.core.k8s:
+#     state: absent
+#     namespace: openshift-config
+#     definition:
+#       apiVersion: v1
+#       kind: ConfigMap
+#       metadata:
+#         name: console-custom-logo
+#   when: reg_active_skin.resources[0].spec.logo == ""
 
-- name: delete the console logo
-  kubernetes.core.k8s_json_patch:
-    api_version: operator.openshift.io/v1
-    kind: Console
-    name: cluster
-    patch:
-      - op: remove
-        path: /spec/customization/customLogoFile/name
-        value: "console-custom-logo"
-      - op: remove
-        path: /spec/customization/customLogoFile/key
-        value: "console-custom-logo"
-  when: reg_active_skin.resources[0].spec.logo == ""
+# - name: delete the console logo
+#   kubernetes.core.k8s_json_patch:
+#     api_version: operator.openshift.io/v1
+#     kind: Console
+#     name: cluster
+#     patch:
+#       - op: remove
+#         path: /spec/customization/customLogoFile/name
+#         value: "console-custom-logo"
+#       - op: remove
+#         path: /spec/customization/customLogoFile/key
+#         value: "console-custom-logo"
+#   when: reg_active_skin.resources[0].spec.logo == ""
