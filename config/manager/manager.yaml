@@ -76,8 +76,8 @@ spec:
           value: explicit
         - name: ANSIBLE_DEBUG_LOGS
           value: true
-        - name: "ANSIBLE_VERBOSITY_CONSOLECUSTOMIZER_OCP-CONSOLE-CUSTOMIZER_DOVID"
-          value: "5"
+        - name: ANSIBLE_VERBOSITY_CONSOLECUSTOMIZER_OCP-CONSOLE-CUSTOMIZER_DOVID
+          value: 5
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
