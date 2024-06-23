@@ -73,11 +73,11 @@ spec:
         name: manager
         env:
         - name: ANSIBLE_GATHERING
-          value: explicit
+          value: "explicit"
         - name: ANSIBLE_DEBUG_LOGS
-          value: true
+          value: "true"
         - name: ANSIBLE_VERBOSITY_CONSOLECUSTOMIZER_OCP-CONSOLE-CUSTOMIZER_DOVID
-          value: 5
+          value: "5"
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
