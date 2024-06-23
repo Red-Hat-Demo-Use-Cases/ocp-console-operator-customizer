@@ -21,8 +21,8 @@
         namespace: '{{ ansible_operator_meta.namespace }}'
       spec:
         text: "{{reg_active_skin.resources[0].spec.title}}"
-        color: "{{reg_active_skin.resources[0].spec.text_color}}"
-        backgroundColor: "{{reg_active_skin.resources[0].spec.background_color}}"
+        color: "{{reg_active_skin.resources[0].spec.textColor}}"
+        backgroundColor: "{{reg_active_skin.resources[0].spec.backgroundColor}}"
 
 # - name: patch the console logo
 #   kubernetes.core.k8s_json_patch:
