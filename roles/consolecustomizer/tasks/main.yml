@@ -29,7 +29,7 @@
       metadata:
         name: console-custom-logo
       binaryData:
-        console-custom-logo: "{{reg_active_skin.resources[0].spec.logo}}"
+        ccl-{{active_skin}}: "{{reg_active_skin.resources[0].spec.logo}}"
     apply: yes
   # when: reg_active_skin.resources[0].spec.logo != ""
 
@@ -44,13 +44,8 @@
         value: "console-custom-logo"
       - op: add
         path: /spec/customization/customLogoFile/key
-        value: "console-custom-logo"
-      - op: replace
-        path: /spec/customization/customLogoFile/name
-        value: "console-custom-logo"
-      - op: replace
-        path: /spec/customization/customLogoFile/key
-        value: "console-custom-logo"
+        value: "ccl-{{active_skin}}"
+
   # when: reg_active_skin.resources[0].spec.logo != ""
 
 # - name: Delete configmap using server side apply
