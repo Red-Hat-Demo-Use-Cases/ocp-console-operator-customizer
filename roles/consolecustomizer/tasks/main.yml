@@ -27,13 +27,10 @@
       apiVersion: v1
       kind: ConfigMap
       metadata:
-        name: console-custom-logo
+        name: "console-{{active_skin}}-logo"
       binaryData:
-        "ccl-{{active_skin}}": "{{reg_active_skin.resources[0].spec.logo}}"
-    append_hash: true
-    apply: yes
-    server_side_apply:
-      field_manager: ansible
+        console-custom-logo: "{{reg_active_skin.resources[0].spec.logo}}"
+    force: true
   # when: reg_active_skin.resources[0].spec.logo != ""
 
 - name: patch the console logo
@@ -44,10 +41,10 @@
     patch:
       - op: replace
         path: /spec/customization/customLogoFile/name
-        value: "console-custom-logo"
+        value: "console-{{active_skin}}-logo"
       - op: replace
         path: /spec/customization/customLogoFile/key
-        value: "ccl-{{active_skin}}"
+        value: "console-custom-logo"
 
   # when: reg_active_skin.resources[0].spec.logo != ""
 
