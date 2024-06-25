@@ -1,0 +1,74 @@
+## Additional roles needed at namesapce level, I don't want to modify 
+# the kuztomize to not break anything for the operator, so let's just add these up manualy 
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: manager-role-ocp-config
+  namespace: openshift-config
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: manager-role-ocp-console
+  namespace: openshift-console
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: manager-rolebinding
+  namespace: openshift-config
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: manager-role-ocp-config
+  namespace: openshift-config
+subjects:
+- kind: ServiceAccount
+  name: ocp-console-customizer-controller-manager
+  namespace: ocp-console-customizer-system
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: manager-rolebinding
+  namespace: openshift-console
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: manager-role-ocp-console
+  namespace: openshift-console
+subjects:
+- kind: ServiceAccount
+  name: ocp-console-customizer-controller-manager
+  namespace: ocp-console-customizer-system

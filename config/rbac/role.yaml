@@ -29,7 +29,6 @@ rules:
       - daemonsets
       - replicasets
       - statefulsets
-      - consolenotification
     verbs:
       - create
       - delete
@@ -38,6 +37,22 @@ rules:
       - patch
       - update
       - watch
+
+  - apiGroups:
+      - console.openshift.io
+      - operator.openshift.io
+    resources:
+      - consolenotifications
+      - consoles
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+
   ##
   ## Rules for ocp-console-customizer.dovid/v1alpha1, Kind: ConsoleCustomizer
   ##
@@ -73,3 +88,5 @@ rules:
       - update
       - watch
 #+kubebuilder:scaffold:rules
+
+

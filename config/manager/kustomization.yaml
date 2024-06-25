@@ -5,4 +5,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: quay.io/dovid/ocp-console-customizer
-  newTag: 1.0.19
+  newTag: 1.0.20

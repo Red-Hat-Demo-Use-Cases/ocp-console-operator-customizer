@@ -20,7 +20,7 @@
         color: "{{reg_active_skin.resources[0].spec.textColor}}"
         backgroundColor: "{{reg_active_skin.resources[0].spec.backgroundColor}}"
 
-- name: Create configmap using server side apply
+- name: Create configmap logo
   kubernetes.core.k8s:
     namespace: openshift-config
     definition:
@@ -28,6 +28,7 @@
       kind: ConfigMap
       metadata:
         name: "console-{{active_skin}}-logo"
+        namespace: "openshift-config"
       binaryData:
         console-custom-logo: "{{reg_active_skin.resources[0].spec.logo}}"
     force: true
@@ -37,6 +38,7 @@
     api_version: operator.openshift.io/v1
     kind: Console
     name: cluster
+    namespace: "openshift-console"
     patch:
       - op: replace
         path: /spec/customization/customLogoFile/name
