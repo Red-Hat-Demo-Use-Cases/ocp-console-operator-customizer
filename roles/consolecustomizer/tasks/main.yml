@@ -31,9 +31,8 @@
       binaryData:
         console-custom-logo: "{{reg_active_skin.resources[0].spec.logo}}"
     force: true
-  # when: reg_active_skin.resources[0].spec.logo != ""
 
-- name: patch the console logo
+- name: Patch the console logo
   kubernetes.core.k8s_json_patch:
     api_version: operator.openshift.io/v1
     kind: Console
@@ -45,30 +44,19 @@
       - op: replace
         path: /spec/customization/customLogoFile/key
         value: "console-custom-logo"
+    wait: true
+    
+- name: Sleep for 5 sec, juste to make sure the logo has been transfered into openshift-console namespace custom-logo configmap before bouncing it.
+  ansible.builtin.wait_for:
+    timeout: 5
 
-  # when: reg_active_skin.resources[0].spec.logo != ""
-
-# - name: Delete configmap using server side apply
-#   kubernetes.core.k8s:
-#     state: absent
-#     namespace: openshift-config
-#     definition:
-#       apiVersion: v1
-#       kind: ConfigMap
-#       metadata:
-#         name: console-custom-logo
-#   when: reg_active_skin.resources[0].spec.logo == ""
-
-# - name: delete the console logo
-#   kubernetes.core.k8s_json_patch:
-#     api_version: operator.openshift.io/v1
-#     kind: Console
-#     name: cluster
-#     patch:
-#       - op: remove
-#         path: /spec/customization/customLogoFile/name
-#         value: "console-custom-logo"
-#       - op: remove
-#         path: /spec/customization/customLogoFile/key
-#         value: "console-custom-logo"
-#   when: reg_active_skin.resources[0].spec.logo == ""
+- name: Bounce the custoom-logo config map to force the console to refresh cache of the logo (for existing sessions)
+  kubernetes.core.k8s:
+    state: absent
+    namespace: openshift-console
+    definition:
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: "custom-logo"
+    force: true
