@@ -29,6 +29,7 @@ rules:
       - daemonsets
       - replicasets
       - statefulsets
+      - consolenotification
     verbs:
       - create
       - delete
