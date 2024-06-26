@@ -1,0 +1,340 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "ocp-console-customizer.dovid/v1alpha1",
+          "kind": "ConsoleCustomizer",
+          "metadata": {
+            "labels": {
+              "app.kubernetes.io/created-by": "ocp-console-operator-customizer",
+              "app.kubernetes.io/instance": "consolecustomizer-redhat",
+              "app.kubernetes.io/managed-by": "kustomize",
+              "app.kubernetes.io/name": "consolecustomizer",
+              "app.kubernetes.io/part-of": "ocp-console-operator-customizer"
+            },
+            "name": "consolecustomizer-redhat"
+          },
+          "spec": {
+            "activeSkin": "consolecustomizerskin-sample"
+          }
+        },
+        {
+          "apiVersion": "ocp-console-customizer.dovid/v1alpha1",
+          "kind": "ConsoleCustomizerSkin",
+          "metadata": {
+            "labels": {
+              "app.kubernetes.io/created-by": "ocp-console-customizer",
+              "app.kubernetes.io/instance": "consolecustomizerskin-sample",
+              "app.kubernetes.io/managed-by": "kustomize",
+              "app.kubernetes.io/name": "consolecustomizerskin",
+              "app.kubernetes.io/part-of": "ocp-console-customizer"
+            },
+            "name": "consolecustomizerskin-sample"
+          },
+          "spec": {
+            "backgroundColor": "#FF0000",
+            "logo": "",
+            "textColor": "#FFFFFF",
+            "title": "Red Hat - Hub Cluster"
+          }
+        }
+      ]
+    capabilities: Basic Install
+    createdAt: "2024-06-26T19:10:47Z"
+    operators.operatorframework.io/builder: operator-sdk-v1.35.0
+    operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
+  name: ocp-console-customizer.v1.0.20
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - kind: ConsoleCustomizer
+      name: consolecustomizers.ocp-console-customizer.dovid
+      version: v1alpha1
+      description: Switch quickly between different theme and skin for OCP Console.
+      displayName: OCP Console Customizer
+
+      specDescriptors:
+      - description: >-
+          You may defined any number of skin using the ConsoleCustomizerSkin kind, and activate one here.
+        displayName: Select the skin you want to activate
+        path: activeSkin
+
+    - kind: ConsoleCustomizerSkin
+      name: consolecustomizerskins.ocp-console-customizer.dovid
+      version: v1alpha1
+      description: Skin definition for OCP Console Customizer
+      displayName: Console Customizer Skin
+
+      specDescriptors:
+      - description: >-
+          Any string you want to display on the top bar of the console. Usually <CustomerName> - <ClusterDescription> (Red Hat - Hub Cluster)
+        displayName: Top Bar Title
+        path: title
+      - description: "Use an HEX color format, #FAFAFA"
+        displayName: Top Bar Text Color
+        path: textColor
+      - description: "Use an HEX color format, #FAFAFA"
+        displayName: Top Bar Background Color
+        path: backgroundColor
+      - description: >-
+          A base64 representation of the logo you want to show at top right corner of the console.
+        displayName: Base64 Logo
+        path: logo
+
+
+  description: This operator is for Red Hat internal, it is used to apply skin on
+    OCP Console.
+  displayName: OCP Console Customizer
+  schema: olm.package
+  icon:
+  - base64data: "iVBORw0KGgoAAAANSUhEUgAAAHgAAAB5CAYAAADyOOV3AAAAAXNSR0IArs4c6QAAA9pJREFUeF7tnTFLXEEUhWfExl1YlrWL7ra2DwkLvuZZWKfIDwjW8SdY7Bb5A4uIpeQvuGUWspZ2aRLwpU8tGKwkT0y/M+DlMMzw2S5vVu6555x7512vvlss5k74s1oum6u2vVV9xeFo1Oz1erLzT+u6ceOx7Hx1fPx/gL2fqQBY3dysL+/vj1Xnv9/dXY/7fdn5n46O1m4ykZ2vjg8ARzIPgCMBUmcoDA4DAINhsM09YXA4fur4wGAYDIOpogM5oJYgiiyKLJME0SbRJpkSSK1wFFkUWaYEdeoMxYNjHnxxMXNdJ3vhAMCp+2AADiKQf5EFwABscWEkGom25I+jyKLIMiUQHsxFhymB1BbmO4osiixLiqozFA/Ggy356fBgPNiUQGqF899OTr6bfsPIwz8fHqq/z88/VN9xPp1WbjCQnf+rbas/T0+y89Xx8R8nk/m/rpPNReOR4dRWxweAC7cYAAZgm3uqJSj3KlcdHxgMg2Fwzn88B4NhMAyGwYEcUBcRFFmRu2guOtJOXKgJgAfjwXhw1h78YX9/tuW9bC5aLUF4cMSDAbhwDwZgADaZMBKd+HUhDIbBMDjjRW4eBsNgGAyDN+cARRZFlkkhuOjgosOUQOq5ZbXC+e7sTDoXvbi7q34/Psrmij8fHFTvdnZk5w+Hw8ptb8vOV8eHLTsRfuduAQAMwCYLY41S4vfNMBgGw2C2zQZyIPc2gyIrsceo+0gABmCTh6kVjiKLIsuUoLRJiRUOBsNgGJx3m8QitGAG519FAzAAW0Ra3QbQB0de+LOrMhwgJDpxGwCDYbDFYdhVGYseHpx27pp90cVfdNAm0SbFZDj0ORKNRFvyh/+6Eoke+6IjAWJfdCRA9KnhAKnjwxqlwi9qABiATTUQRVBiC4PBMBgGZ73pjmWkaS8iqKILvysGYAA2eSRFFkWWKYFok2iTbAmU+8yU3IPZdFd4FQ3AAGzSULUEIdGRqUoYDINhMMtIN+cAEp34hT8SjUQj0Ug0Ev1WFqgtjJX+pd9F48GFe/CXqpLuiz6fTis3GMj2Lec+t6yOj7+u6/mW97O3ekjsOW6awhFSxweAE7/OA+DCiyAABuCYCwY/R6KRaFMCZb/jQn0RgUQj0SaGIdFItCmBkOhI+JBoJNrEMCQaiTYlEBKdWqK/1vXMeT+3wbj5abXHsKYpjJwH4LQzU2oCAHDpHgyDYbDJntUShAfjwaYEzf4uGolGok0MQKITj+zAYBgMg/v9Y1MQAg+rFY4+uPQ++HVsVpWdr+ee1nXjxuNb1Xeslsvmqm1l5x+ORs1eryc7Xx2fF8l+Zpby6919AAAAAElFTkSuQmCC"
+    mediatype: "image/png"
+  install:
+    spec:
+      clusterPermissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - secrets
+          - pods
+          - pods/exec
+          - pods/log
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - apps
+          resources:
+          - deployments
+          - daemonsets
+          - replicasets
+          - statefulsets
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - console.openshift.io
+          - operator.openshift.io
+          resources:
+          - consolenotifications
+          - consoles
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - list
+        - apiGroups:
+          - ocp-console-customizer.dovid
+          resources:
+          - consolecustomizers
+          - consolecustomizers/status
+          - consolecustomizers/finalizers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - ocp-console-customizer.dovid
+          resources:
+          - consolecustomizerskins
+          - consolecustomizerskins/status
+          - consolecustomizerskins/finalizers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - authentication.k8s.io
+          resources:
+          - tokenreviews
+          verbs:
+          - create
+        - apiGroups:
+          - authorization.k8s.io
+          resources:
+          - subjectaccessreviews
+          verbs:
+          - create
+        serviceAccountName: ocp-console-customizer-controller-manager
+      deployments:
+      - label:
+          app.kubernetes.io/component: manager
+          app.kubernetes.io/created-by: ocp-console-customizer
+          app.kubernetes.io/instance: controller-manager
+          app.kubernetes.io/managed-by: kustomize
+          app.kubernetes.io/name: deployment
+          app.kubernetes.io/part-of: ocp-console-customizer
+          control-plane: controller-manager
+        name: ocp-console-customizer-controller-manager
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: controller-manager
+          strategy: {}
+          template:
+            metadata:
+              annotations:
+                kubectl.kubernetes.io/default-container: manager
+              labels:
+                control-plane: controller-manager
+            spec:
+              containers:
+              - args:
+                - --secure-listen-address=0.0.0.0:8443
+                - --upstream=http://127.0.0.1:8080/
+                - --logtostderr=true
+                - --v=0
+                image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+                name: kube-rbac-proxy
+                ports:
+                - containerPort: 8443
+                  name: https
+                  protocol: TCP
+                resources:
+                  limits:
+                    cpu: 500m
+                    memory: 128Mi
+                  requests:
+                    cpu: 5m
+                    memory: 64Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              - args:
+                - --health-probe-bind-address=:6789
+                - --metrics-bind-address=127.0.0.1:8080
+                - --leader-elect
+                - --leader-election-id=ocp-console-customizer
+                env:
+                - name: ANSIBLE_GATHERING
+                  value: explicit
+                - name: ANSIBLE_DEBUG_LOGS
+                  value: "true"
+                - name: ANSIBLE_VERBOSITY_CONSOLECUSTOMIZER_OCP-CONSOLE-CUSTOMIZER_DOVID
+                  value: "5"
+                image: quay.io/dovid/ocp-console-customizer:1.0.20
+                livenessProbe:
+                  httpGet:
+                    path: /healthz
+                    port: 6789
+                  initialDelaySeconds: 15
+                  periodSeconds: 20
+                name: manager
+                readinessProbe:
+                  httpGet:
+                    path: /readyz
+                    port: 6789
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                resources:
+                  limits:
+                    cpu: 500m
+                    memory: 768Mi
+                  requests:
+                    cpu: 10m
+                    memory: 256Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              securityContext:
+                runAsNonRoot: true
+              serviceAccountName: ocp-console-customizer-controller-manager
+              terminationGracePeriodSeconds: 10
+      permissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - coordination.k8s.io
+          resources:
+          - leases
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+          - patch
+        serviceAccountName: ocp-console-customizer-controller-manager
+    strategy: deployment
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - ocp
+  - console
+  - skin
+  - theme
+  - redhat
+  links:
+  - name: Ocp Console Customizer
+    url: https://ocp-console-customizer.domain
+  maintainers:
+  - email: dcuerrie@redhat.com
+    name: David Cuerrier
+  maturity: alpha
+  provider:
+    name: DC
+  version: 1.0.20

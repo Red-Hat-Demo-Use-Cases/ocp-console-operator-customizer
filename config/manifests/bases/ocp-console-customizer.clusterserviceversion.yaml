@@ -1,0 +1,46 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+  name: ocp-console-customizer.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions: {}
+  description: This operator is for Red Hat internal, it is used to apply skin on
+    OCP Console.
+  displayName: OCP Console Customizer
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - ocp
+  - console
+  - skin
+  - theme
+  - redhat
+  links:
+  - name: Ocp Console Customizer
+    url: https://ocp-console-customizer.domain
+  maintainers:
+  - email: dcuerrie@redhat.com
+    name: David Cuerrier
+  maturity: alpha
+  provider:
+    name: DC
+  version: 0.0.0

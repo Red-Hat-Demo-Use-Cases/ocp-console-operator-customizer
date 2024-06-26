@@ -1,0 +1,17 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  annotations:
+  name: occ-operator-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  grpcPodConfig:
+    securityContextConfig: legacy
+  displayName: DC
+  image: quay.io/dovid/ocp-console-customizer-catalog:v1.0.20
+  publisher: DC
+  updateStrategy:
+    registryPoll:
+      interval: 30m
