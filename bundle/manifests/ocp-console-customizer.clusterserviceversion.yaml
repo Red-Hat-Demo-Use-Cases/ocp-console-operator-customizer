@@ -46,7 +46,7 @@ metadata:
     createdAt: "2024-06-26T19:10:47Z"
     operators.operatorframework.io/builder: operator-sdk-v1.35.0
     operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
-  name: ocp-console-customizer.v1.0.20
+  name: ocp-console-customizer.v1.0.21
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -63,6 +63,8 @@ spec:
           You may defined any number of skin using the ConsoleCustomizerSkin kind, and activate one here.
         displayName: Select the skin you want to activate
         path: activeSkin
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:selector:consolecustomizerskins.ocp-console-customizer.dovid:v1alpha1:ConsoleCustomizerSkin
 
     - kind: ConsoleCustomizerSkin
       name: consolecustomizerskins.ocp-console-customizer.dovid
@@ -337,4 +339,4 @@ spec:
   maturity: alpha
   provider:
     name: DC
-  version: 1.0.20
+  version: 1.0.21

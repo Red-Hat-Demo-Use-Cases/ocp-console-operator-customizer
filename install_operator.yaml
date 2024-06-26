@@ -10,7 +10,7 @@ spec:
   grpcPodConfig:
     securityContextConfig: legacy
   displayName: DC
-  image: quay.io/dovid/ocp-console-customizer-catalog:v1.0.20
+  image: quay.io/dovid/ocp-console-customizer-catalog:v1.0.21
   publisher: DC
   updateStrategy:
     registryPoll:
