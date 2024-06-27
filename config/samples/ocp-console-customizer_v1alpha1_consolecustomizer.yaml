@@ -7,6 +7,7 @@ metadata:
     app.kubernetes.io/part-of: ocp-console-operator-customizer
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/created-by: ocp-console-operator-customizer
-  name: consolecustomizer-redhat
+  name: consolecustomizer-controller
 spec:
-  activeSkin: consolecustomizerskin-sample
+  enableSkin: true
+  activeSkin: consolecustomizerskin-exemple

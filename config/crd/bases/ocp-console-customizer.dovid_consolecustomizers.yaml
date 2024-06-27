@@ -35,6 +35,9 @@ spec:
             description: Spec defines the desired state of ConsoleCustomizer
             type: object
             properties:
+              enableSkin:
+                description: Enable, or not, the application of skin on top of the OCP Console.
+                type: boolean
               activeSkin:
                 description: The skin CRD you want to be active
                 type: string
