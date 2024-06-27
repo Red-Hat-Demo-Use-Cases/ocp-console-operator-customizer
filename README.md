@@ -1,5 +1,7 @@
 # ![OCCOperatorImage](./resources/OperatorIcon.png) OCP Console Customizer
 
+![Static Badge](https://img.shields.io/badge/version-1.0.22-green)
+
 
 operator-sdk init --plugins=ansible --domain dovid
 operator-sdk create api --group ocp-console-customizer --version v1alpha1 --kind ConsoleCustomizer --generate-role
