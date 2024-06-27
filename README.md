@@ -1,4 +1,4 @@
-![OCCOperatorImage](./resources/OperatorIcon.png)
+# ![OCCOperatorImage](./resources/OperatorIcon.png) OCP Console Customizer
 
 
 operator-sdk init --plugins=ansible --domain dovid
